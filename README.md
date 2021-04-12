@@ -1,1 +1,0 @@
-# money management app && backend-frontend @by_react

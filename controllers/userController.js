@@ -1,13 +1,12 @@
-const registerValidator = require('../validator/registerValidator')
-const User = require('../model/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const registerValidator = require('../validator/registerValidator')
 const loginValidator = require('../validator/loginValidator')
+const User = require('../model/User')
 const {serverError, resourceError} = require('../util/error')
 
-
+// login controller
 module.exports = {
-    
     login(req, res) {
         let { email, password } = req.body
         let validate = loginValidator({ email, password })
@@ -51,7 +50,6 @@ module.exports = {
 
         // Generate Token and Response Back
     },
-
     register(req, res) {
         let { name, email, password, confirmPassword } = req.body
         let validate = registerValidator({ name, email, password, confirmPassword })
@@ -93,5 +91,11 @@ module.exports = {
                 .catch(error => serverError(res, error))
         }
     },
-
+    allUser(req, res) {
+        User.find()
+            .then(users => {
+                res.status(200).json(users)
+            })
+            .catch(error => serverError(res, error))
+    }
 }
