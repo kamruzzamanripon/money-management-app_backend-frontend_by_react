@@ -33,14 +33,23 @@ app.get('/', (req, res) => {
     })
 })
 
-const PORT = process.env.PORT || 4000
-app.listen(PORT, () => {
-    console.log(`SERVER is RUNNING ON PORT ${PORT}`)
-    mongoose.connect(`mongodb://${process.env.dbUsername}:${process.env.dbPassword}@ds261116.mlab.com:61116/money-app`,
-        { useNewUrlParser: true },
-        () => {
-        console.log('Database Connected...')
-    });
-})
+ //const PORT = process.env.PORT || 4000
+// app.listen(PORT, () => {
+//     console.log(`SERVER is RUNNING ON PORT ${PORT}`)
+//     mongoose.connect(`mongodb://${process.env.dbUsername}:${process.env.dbPassword}@ds261116.mlab.com:61116/money-app`,
+//         { useNewUrlParser: true },
+//         () => {
+//         console.log('Database Connected...')
+//     });
+// })
 
+const PORT = process.env.PORT || 4000
+app.listen(PORT, ()=> {
+    console.log(`SERVER is Running on PORT ${PORT}`)
+    mongoose.connect('mongodb://localhost/money-management-app', 
+    { useNewUrlParser: true },
+    ()=>{
+        console.log('database connected...')
+    })
+})
 
